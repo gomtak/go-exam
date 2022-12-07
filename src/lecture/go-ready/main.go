@@ -1,223 +1,210 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"reflect"
 )
 
-func question1() {
-	var s string
-	fmt.Scan(&s)
-	fmt.Print(s)
-	fmt.Println(s)
-	fmt.Printf("hello %s", s)
-}
-func question2() {
-	var name string
-	var age int
-	fmt.Println("이름을 입력하세요 : ")
-	fmt.Scanln(&name)
-	fmt.Println("나이를 입력하세요 : ")
-	fmt.Scanln(&age)
-	fmt.Println()
-	fmt.Println("결과")
-	fmt.Printf("이름 : %s, 나이 : %d", name, age)
+func qeustion1() {
+	var strArray1 [5]string
+	strArray1[0] = "a"
+	strArray1[1] = "b"
+	strArray1[2] = "c"
+	strArray1[3] = "d"
+	strArray1[4] = "e"
+	fmt.Println(strArray1)
 }
 
-func question3() {
-	var i int
-	fmt.Println(reflect.TypeOf(i))
-}
-func resInt(n int) int {
-	return n
+func qeustion2() {
+	var strArray2 [5]string = [5]string{"1", "2", "3", "4", "5"}
+	fmt.Println(strArray2)
 }
 
-func resStr(s string) string {
-	return s
+func qeustion3() {
+	strArray3 := [5]string{"10", "20", "30"}
+	fmt.Println(strArray3)
 }
 
-func question4() {
-
-	var l int = resInt(30)        // int 형식의 인자를 받고 그것을 return하는 이름 resInt인 함수 작성 필요
-	var m string = resStr("codz") // string 형식의 인자를 받고 그것을 return하는 이름 resInt인 함수 작성 필요
-	fmt.Println(l)
-	fmt.Println(m)
-
-}
-func multiCalc(a, b int) (x, y int) {
-	x = a + b
-	y = a * b
-	return x, y
-	// return a + b, a * b
-}
-func question5() {
-	var a, b int = multiCalc(1, 2)
-	fmt.Printf("합의 값 %d, 곱의 값 %d", a, b)
-}
-func tripleReturn() (a, b, c int) {
-	return 1, 2, 3
-}
-func question6() {
-	var a, b, c = tripleReturn()
-	fmt.Printf("첫번쨰 : %d, 두번째 : %d,세번째 : %d", a, b, c)
-}
-func question7() {
-	_, a, b := funcA()
-	var c, _, d = funcB()
-	var e, f, _ = funcC()
-	var g, _, _ = funcD()
-
-	fmt.Println(a, b, c, d, e, f, g)
+func qeustion4() {
+	strArray4 := [...]string{"100", "200", "300"}
+	fmt.Println(strArray4)
+	fmt.Println(len(strArray4))
 }
 
-func funcD() (a, b, c string) {
-	return "D1", "공백", "공백"
+func qeustion5() {
+	strArray5 := [5]string{2: "codz", 4: "states"}
+	fmt.Println(strArray5)
+	fmt.Printf("%#v\n", strArray5)
+	fmt.Printf("%v\n", strArray5)
 }
+func qeustion6() {
+	var a1 []int
+	var a2 [5]int
 
-func funcC() (a, b, c string) {
-	return "C1", "C2", "공백"
-}
+	fmt.Println(reflect.ValueOf(a1).Kind())
+	fmt.Println(reflect.ValueOf(a1))
+	fmt.Println(reflect.TypeOf(a1))
 
-func funcB() (a, b, c string) {
-	return "B1", "공백", "B3"
+	fmt.Println(reflect.ValueOf(a2).Kind())
+	fmt.Println(reflect.TypeOf(a2))
 }
+func qeustion7() {
+	var intSlice = []int{0, 1, 2, 3}
+	fmt.Printf("%#v\n", intSlice)
+	fmt.Printf("%v\n", intSlice)
+	fmt.Printf(":2 %v\n", intSlice[:2])
+	fmt.Printf("1:3 %v\n", intSlice[1:3])
+	fmt.Printf("2: %v\n", intSlice[2:])
+	fmt.Printf("0:3 %v\n", intSlice[0:3])
+}
+func qeustion8() {
+	// var map1 map[string]int
 
-func funcA() (a, b, c string) {
-	return "공백", "A2", "A3"
-}
-func one() {
-	fmt.Println("1111")
-}
+	// map2 := make(map[string]string)
+	// map3 := make(map[int]string, 1000)
 
-func two() {
-	fmt.Println("2222")
-}
-func tree() {
-	fmt.Println("3333")
-}
-func question8() {
-	defer two()
-	defer tree()
-	one()
-}
-func question9() {
-	file, err := os.OpenFile(
-		"res.txt",
-		os.O_CREATE|os.O_RDWR|os.O_TRUNC,
-		os.FileMode(0644),
-	)
-	if err != nil {
-		fmt.Println(err)
-		return
+	var timeZone = map[string]int{
+		"UTC": 0,
+		"EST": 5,
+		"CST": 6,
+		"MST": 7,
+		"PST": 8,
 	}
-	defer file.Close()
+	for s, _ := range timeZone {
+		println(s)
+	}
 
-	w := bufio.NewWriter(file)
-
-	w.WriteString("Hello World!")
-	w.Flush()
-
-	r := bufio.NewReader(file)
-
-	fi, _ := file.Stat()
-	b := make([]byte, fi.Size())
-
-	file.Seek(0, os.SEEK_SET)
-	r.Read(b)
-
-	fmt.Println(string(b))
+	// timeSet := timeZone["CST"]
 }
-func tempFunc(s ...string) {
-	fmt.Println(s)
+
+func qeustion9() {
+	map1 := make(map[string]int)
+	map1 = map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+	for k, v := range map1 {
+		fmt.Printf("키 : %s , 값 : %d \n", k, v)
+	}
+	fmt.Println(map1)
 }
-func question10() {
-	tempFunc("a")
-	tempFunc("a", "b")
-	tempFunc("a", "b", "c")
+
+func qeustion10() {
+	type Persons struct {
+		Name string
+		Age  int
+		Pnum string
+	}
+	var pers Persons
+	pers.Name = "codz"
+	pers.Age = 23
+	pers.Pnum = "01098765432"
+
+	fmt.Println(pers)
+	fmt.Printf("%#v\n", pers)
+	fmt.Println("name : ", pers.Name, " age : ", pers.Age, " pnum : ", pers.Pnum)
+}
+func qeustion11() {
+	type Persons struct {
+		Name string
+		Age  int
+		Pnum string
+	}
+
+	p1 := new(Persons)
+	p1.Name = "codz"
+	p1.Age = 29
+	p1.Pnum = "01098765432"
+	fmt.Println("Person 1 : ", p1)
+	fmt.Printf("%#v\n", p1)
+
+	var p2 = new(Persons)
+	p2.Name = "states"
+	p2.Age = 33
+	p2.Pnum = "01054329876"
+	fmt.Println("Person 2 : ", p2)
+	fmt.Printf("%#v\n", p2)
+
+	//선언과 동시에 초기화
+	var p3 = &Persons{"test", 17, "01045673210"}
+	fmt.Println("Person 3 : ", p3)
+	fmt.Printf("%#v\n", p3)
+
+	//구조체 배열 형식
+	p4 := []Persons{
+		Persons{
+			Name: "p1",
+			Age:  10,
+			Pnum: "9876",
+		},
+		Persons{
+			Name: "p2",
+			Age:  9,
+			Pnum: "8765",
+		},
+	}
+	fmt.Println(p4)
+	fmt.Printf("%#v\n", p4)
+}
+func qeustion12() {
+
+	//예제1 : 인터페이스 데이터 선언
+	var x interface{}
+	x = 1
+	fmt.Println(x)
+
+	x = "Hello World"
+	fmt.Println(x)
+
+	//예제2 : 인터페이스 데이터 타입 변환과 반환값
+	// var x interface{}
+	x = "10"
+
+	sVal := x.(string)
+	fmt.Println(sVal)
+	x = 10
+	nVal, bCnv := x.(int)
+	fmt.Println(nVal, bCnv)
+
+	//예제3 : 타입에 따른 핸들링 기법
+	// var x interface{}
+	x = "hello"
+	xType := reflect.TypeOf(x)
+
+	if xType.Kind() == reflect.Int {
+		fmt.Println("Int ", x)
+	} else if xType.Kind() == reflect.String {
+		fmt.Println("string ", x)
+	}
+	type Persons struct {
+		Name string
+		Age  int
+	}
+	//예제4 : 구조체를 선언하고, 구조체별 인터페이스 핸들링
+	codz := Persons{Name: "codz", Age: 20}
+
+	// var x interface{}
+	x = codz
+
+	xPerson := x.(Persons)
+	xPrsAge := x.(Persons).Age
+	ty := reflect.TypeOf(xPerson)
+	fmt.Printf("%v, %d, %s\n", xPerson, xPrsAge, xPerson.Name)
+	fmt.Println(ty.String())
+
 }
 func main() {
-	// question1()
-	// question2()
-	// question3()
-	// question4()
-	// question5()
-	// question6()
-	// question7()
-	// question8()
-	// question9()
-	// question10()
-	var s = "abc"
-	fmt.Println(s)
-	d := "dbc"
-	fmt.Println(d)
-	// var s string = "codz"
-	// fmt.Println("Hellow", "World", s)
-
-	// s := "name" 새로운 변수가 추가되지 않는이상 이런식으로 재선언 되지 않음.
-	// ./main.go:11:4: no new variables on left side of :=
-
-	// s := "name"
-	// fmt.Println("Hello", s)
-	// print(s)
-
-	// s := "name"
-	// fmt.Printf("Hello %s", s)
-
-	// s := 4567
-	// msg := fmt.Sprint("Hello", "world", s)
-	// fmt.Print(msg)
-
-	// var s string
-	// fmt.Scan(&s)
-	// fmt.Print(s)
-
-	a := 5
-	b := &a
-	fmt.Println(b)
-	fmt.Println(*b)
-	*b = 6
-
-	fmt.Println(*b)
-	fmt.Println(&a)
-	fmt.Println(&b)
-
-	// 포인터를 통해서 값 변경이 가능. 아니면 그냥 초기값이 뱉어짐.
-	// var data Data
-
-	// ChangeData(&data)
-
-	// fmt.Println(data.value)
-	// fmt.Println(data.data[100])
-
-	// i := resInt(10)
-	// s := resStr("name")
-
-	// fmt.Print(i)
-
-	// a, b := multiReturn()
-	// fmt.Println(a)
-	// fmt.Println(b)
+	// qeustion1()
+	// qeustion2()
+	// qeustion3()
+	// qeustion4()
+	// qeustion5()
+	// qeustion6()
+	// qeustion7()
+	// qeustion8()
+	// qeustion9()
+	// qeustion10()
+	// qeustion11()
+	qeustion12()
 }
-
-//	func resInt(s int) int {
-//		return 101
-//	}
-// func multiReturn() (n, m int) {
-// 	return 123, 10
-// }
-
-// func multiReturn() (n string, m int) {
-// 	return "ten", 10
-// }
-
-// type Data struct {
-// 	value int
-// 	data  [200]int // 200개의 원소를 가진 int형 배열
-// }
-
-// func ChangeData(d *Data) {
-// 	d.value = 999
-// 	d.data[100] = 999
-// }

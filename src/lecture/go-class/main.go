@@ -1,9 +1,9 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"os"
+	"lecture/go-class/controller"
+	"lecture/go-class/model"
 )
 
 type Person struct {
@@ -13,16 +13,18 @@ type Person struct {
 }
 
 func main() {
-	p := Person{Name: "codz", Age: 23, Pnum: "01098765432"}
+	ctl, _ := controller.NewCTL()
 
-	encoder := json.NewEncoder(os.Stdout)     //인코드 선언
-	if err := encoder.Encode(p); err != nil { //인코드 실행
-		panic(err)
-	}
+	fmt.Println(ctl.CalcSum(2, 3))
+	fmt.Println(ctl.CalcMul(2, 3))
+	fmt.Println(ctl.CalcDiv(2, 3))
+	fmt.Println(ctl.CalcSub(2, 3))
 
-	fmt.Println(p)
-	//json 문자열로 반환
-	jdata, _ := json.Marshal(p)
-	fmt.Println(jdata)
+	mod, _ := model.NewModel()
+	fmt.Println(mod.Run("run"))
+	fmt.Println(mod.Jump("jump"))
+	fmt.Println(mod.Sleep("sleep"))
+	fmt.Println(mod.Walk("walk"))
+	fmt.Println(mod.Fly("fly"))
 
 }

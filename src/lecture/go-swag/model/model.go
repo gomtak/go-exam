@@ -23,6 +23,7 @@ type Person struct {
 
 func NewModel() (*Model, error) {
 	r := &Model{}
+	return r, nil
 
 	var err error
 	mgUrl := "mongodb://127.0.0.1:27017"
@@ -39,22 +40,20 @@ func NewModel() (*Model, error) {
 }
 
 func (p *Model) GetPerson() []Person {
-
 	filter := bson.D{}
-	cur, err := p.colPersons.Find(context.TODO(), filter)
+	cursor, err := p.colPersons.Find(context.TODO(), filter)
 	if err != nil {
 		panic(err)
 	}
-	var pers []Person
 
+	var pers []Person
 	for _, result := range pers {
-		cur.Decode(&result)
+		cursor.Decode(&result)
 		output, err := json.MarshalIndent(result, "", "    ")
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println(output)
+		fmt.Printf("%s\n", output)
 	}
-
-	return nil
+	return pers
 }
